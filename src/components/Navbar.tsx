@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
@@ -11,13 +10,13 @@ const navLinks = [
   { label: "Features", href: "#features" },
   { label: "How it works", href: "#how-it-works" },
   { label: "Industries", href: "#industries" },
-  { label: "Pricing", href: "#pricing" }
+  { label: "Pricing", href: "#pricing" },
+  { label: "Login", href: "#login" }
 ];
 
 export function Navbar() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
-  const router = useRouter();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 40);
@@ -52,16 +51,10 @@ export function Navbar() {
           ))}
         </div>
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            className="hidden lg:inline-flex"
-            onClick={() => router.push("/login")}
-          >
+          <Button variant="ghost" className="hidden lg:inline-flex">
             Login
           </Button>
-          <Button className="shadow-glow" onClick={() => router.push("/signup")}>
-            Get started
-          </Button>
+          <Button className="shadow-glow">Get started</Button>
         </div>
       </nav>
     </motion.header>
